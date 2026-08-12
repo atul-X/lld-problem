@@ -11,17 +11,14 @@ import socialmedia.model.Profile;
 import socialmedia.model.ProfileRequest;
 import socialmedia.service.comment.CommentService;
 import socialmedia.service.feed.FeedService;
-import socialmedia.service.follwer.FollowService;
+import socialmedia.service.follower.FollowService;
 import socialmedia.service.likes.LikeService;
 import socialmedia.service.message.MessageService;
 import socialmedia.service.post.IPost;
-import socialmedia.service.post.MediaPostService;
 import socialmedia.service.post.PostFactory;
-import socialmedia.service.post.TextPostService;
 import socialmedia.service.profile.ProfileService;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 public class SocialMediaManager {
@@ -62,6 +59,13 @@ public class SocialMediaManager {
     }
 
     public void deleteProfile(int profileId){
+        for (Post post : getUserPosts(profileId)){
+            deletePost(post.getId(), profileId);
+        }
+        commentService.removeAllCommentsByProfile(profileId);
+        likeService.removeAllLikesByUser(profileId);
+        followService.removeAllRelations(profileId);
+        messageService.removeAllMessagesForUser(profileId);
         profileService.deleteProfile(profileId);
     }
 
@@ -93,12 +97,13 @@ public class SocialMediaManager {
     }
 
     public void deletePost(int postId, int profileId){
-        Post post = TextPostService.getInstance().getPost(postId);
-        IPost postService = post != null ? TextPostService.getInstance() : MediaPostService.getInstance();
-        if (post == null && MediaPostService.getInstance().getPost(postId) == null){
+        IPost postService = postFactory.findServiceForPost(postId);
+        if (postService == null){
             throw new IllegalStateException("Post not found: " + postId);
         }
         postService.deletePost(postId, profileId);
+        commentService.removeAllCommentsForPost(postId);
+        likeService.removeAllLikesForPost(postId);
     }
 
     public List<Post> getUserPosts(int userId){
@@ -107,17 +112,14 @@ public class SocialMediaManager {
 
     // ---- Like ----
     public Like likePost(LikeRequest likeRequest){
-        List<Post> postList=getUserPosts(likeRequest.getUserId());
-        Optional<Post> post=postList.stream().filter(p->p.getId()==likeRequest.getPostId()).findFirst();
-        if (!post.isPresent()){
+        if (postFactory.findServiceForPost(likeRequest.getPostId()) == null){
             throw new IllegalStateException("Post not present");
         }
-//        if(likeRequest.)
         return likeService.addLike(likeRequest);
     }
 
-    public void unlikePost(Like like){
-        likeService.removeLike(like);
+    public void unlikePost(int likeId, int userId){
+        likeService.removeLike(likeId, userId);
     }
 
     public int getLikeCount(int postId){
@@ -129,8 +131,8 @@ public class SocialMediaManager {
         return commentService.addComment(commentRequest);
     }
 
-    public void removeComment(int commentId){
-        commentService.removeComment(commentId);
+    public void removeComment(int commentId, int profileId){
+        commentService.removeComment(commentId, profileId);
     }
 
     public List<Comment> getComments(int postId){

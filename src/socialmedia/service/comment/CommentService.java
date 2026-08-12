@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class CommentService {
     private static volatile CommentService instance;
@@ -40,13 +41,39 @@ public class CommentService {
         return comment;
     }
 
-    public synchronized void removeComment(int  commentId){
-        if (!commentMap.containsKey(commentId)){
+    public synchronized void removeComment(int commentId, int profileId){
+        Comment comment=commentMap.get(commentId);
+        if (comment == null){
             throw new IllegalStateException("Comment does not exist: " + commentId);
         }
-        Comment comment=commentMap.get(commentId);
+        if (comment.getProfileId() != profileId){
+            throw new IllegalStateException("User does not own this comment");
+        }
         commentMap.remove(commentId);
         commentMapByPostId.get(comment.getPostId()).remove(comment);
+    }
+
+    public synchronized void removeAllCommentsByProfile(int profileId){
+        List<Comment> toRemove = commentMap.values().stream()
+                .filter(comment -> comment.getProfileId() == profileId)
+                .collect(Collectors.toList());
+        for (Comment comment : toRemove){
+            commentMap.remove(comment.getId());
+            List<Comment> postComments = commentMapByPostId.get(comment.getPostId());
+            if (postComments != null){
+                postComments.remove(comment);
+            }
+        }
+    }
+
+    public synchronized void removeAllCommentsForPost(int postId){
+        List<Comment> comments = commentMapByPostId.remove(postId);
+        if (comments == null){
+            return;
+        }
+        for (Comment comment : comments){
+            commentMap.remove(comment.getId());
+        }
     }
 
     public synchronized List<Comment> getCommentsForPost(int postId){

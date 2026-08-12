@@ -5,10 +5,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Comment {
     private static final AtomicInteger idGenerator = new AtomicInteger(1);
 
-    private int postId;
-    private int profileId;
+    private final int postId;
+    private final int profileId;
     private String content;
-    private int id;
+    private final int id;
 
     public Comment(int postId, int profileId, String content) {
         this.postId = postId;
@@ -21,16 +21,8 @@ public class Comment {
         return postId;
     }
 
-    public void setPostId(int postId) {
-        this.postId = postId;
-    }
-
     public int getProfileId() {
         return profileId;
-    }
-
-    public void setProfileId(int profileId) {
-        this.profileId = profileId;
     }
 
     public String getContent() {

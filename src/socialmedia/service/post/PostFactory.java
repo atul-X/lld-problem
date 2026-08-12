@@ -13,8 +13,10 @@ public class PostFactory {
         switch (postType){
             case MESSAGE:
                 return TextPostService.getInstance();
-            default:
+            case MEDIA:
                 return MediaPostService.getInstance();
+            default:
+                throw new IllegalArgumentException("Unsupported post type: " + postType);
         }
     }
 
@@ -24,6 +26,16 @@ public class PostFactory {
         posts.addAll(MediaPostService.getInstance().getUserPosts(userId));
         posts.sort(Comparator.comparing(Post::getCreatedAt));
         return posts;
+    }
+
+    public IPost findServiceForPost(int postId){
+        if (TextPostService.getInstance().getPost(postId) != null){
+            return TextPostService.getInstance();
+        }
+        if (MediaPostService.getInstance().getPost(postId) != null){
+            return MediaPostService.getInstance();
+        }
+        return null;
     }
 
 }

@@ -55,6 +55,21 @@ public class MessageService {
         return messages;
     }
 
+    public synchronized void removeAllMessagesForUser(int userId){
+        List<Message> userMessages = messagesByUserId.remove(userId);
+        if (userMessages == null){
+            return;
+        }
+        for (Message message : userMessages){
+            int otherUserId = message.getSenderId() == userId ? message.getReceiverId() : message.getSenderId();
+            List<Message> otherList = messagesByUserId.get(otherUserId);
+            if (otherList != null){
+                otherList.remove(message);
+            }
+            conversationMap.remove(conversationKey(message.getSenderId(), message.getReceiverId()));
+        }
+    }
+
     private String conversationKey(int userA, int userB){
         return userA < userB ? userA + "_" + userB : userB + "_" + userA;
     }

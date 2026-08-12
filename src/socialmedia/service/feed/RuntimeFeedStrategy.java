@@ -1,7 +1,7 @@
 package socialmedia.service.feed;
 
 import socialmedia.model.Post;
-import socialmedia.service.follwer.FollowService;
+import socialmedia.service.follower.FollowService;
 import socialmedia.service.post.PostFactory;
 
 import java.util.ArrayList;

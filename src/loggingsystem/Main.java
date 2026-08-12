@@ -10,7 +10,7 @@ import loggingsystem.service.Logger;
 import java.util.List;
 
 public class Main {
-    static void main() {
+    public static void main(String[] args) {
         LoggerConfigurations configurations=new LoggerConfigurations();
         configurations.setFilterList(List.of(new LogLevelPriorityFilter()));
         configurations.setLogHandlerList(List.of(new ConsoleLoggerHandler()));

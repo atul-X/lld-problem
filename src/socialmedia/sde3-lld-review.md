@@ -1,13 +1,13 @@
 # SDE3 LLD Review — Social Media Platform
 
-## Verdict: Lean Hire for SDE2, borderline/no for SDE3 as-is
+## Verdict: **Fixed** — was "Lean Hire for SDE2, borderline/no for SDE3"
 
 Singleton, Factory, Strategy, and Facade are all applied correctly and for real
 reasons, not decoration — that's the easy 60% of this problem and it's solid. What
-holds it back from a clean SDE3 bar is that the one NFR called out by name in your own
-`problem.md` — *"Concurrency … on user post like count"* — isn't actually enforced,
-plus a handful of correctness/data-integrity gaps (ownership checks, cascade deletes,
-mutable value objects) that a bar-raiser treats as "did you think past the happy path."
+originally held it back from a clean SDE3 bar was that the one NFR called out by name
+in your own `problem.md` — *"Concurrency … on user post like count"* — wasn't
+enforced, plus a handful of correctness/data-integrity gaps (ownership checks, cascade
+deletes, mutable value objects). All six bugs below and every nit have since been fixed.
 
 ## What's working
 
@@ -37,80 +37,93 @@ mutable value objects) that a bar-raiser treats as "did you think past the happy
 
 | Stated requirement | Status |
 |---|---|
-| Profile create/delete | Done, but delete doesn't cascade (see bugs) |
+| Profile create/delete | Done — delete now cascades (see fix #3) |
 | Post create/delete, like, comment | Done |
 | Direct messages | Done (`MessageService`) |
 | Feed service | Done — Strategy pattern, runtime generation as the doc chose |
 | Follow/unfollow | Done |
-| Concurrency on like count | **Not met** — see bug #1 below |
-| Extensibility | Mostly — undercut by `PostFactory`'s silent `default` case (nit) |
-| Media content management | **Not really met** — `Metadata` is an unusable stub |
+| Concurrency on like count | **Fixed** — see fix #1 below |
+| Extensibility | **Fixed** — `PostFactory`'s silent `default` case now fails loudly |
+| Media content management | **Fixed** — `Metadata` now has a real constructor/getters |
 
 ## Bugs found
 
-1. **The flagship NFR isn't met — duplicate likes inflate the count.**
-   `LikeService.addLike` (`service/likes/LikeService.java:32`) has no check for
-   "did this user already like this post." Call it twice and the count double-counts.
-   `CommentService` enforces one-comment-per-user-per-post
-   (`service/comment/CommentService.java:32-36`); `LikeService` enforces nothing on
-   the exact metric the design doc singles out as the concurrency-critical one.
+1. ~~**The flagship NFR isn't met — duplicate likes inflate the count.**
+   `LikeService.addLike` had no check for "did this user already like this post."~~
+   **Fixed** — `addLike` (`service/likes/LikeService.java:36`) is now `synchronized`
+   and checks `likeIdsByPostId` for an existing like from the same user before
+   inserting, throwing `IllegalStateException` on a duplicate.
 
-2. **No ownership checks on delete, inconsistently applied.**
-   `PostService.removePost` validates `post.getUserId() == profileId`
-   (`service/post/PostService.java:29-31`) before deleting — good. But
-   `CommentService.removeComment(commentId)` (`service/comment/CommentService.java:43`)
-   and `LikeService.removeLike(Like)` (`service/likes/LikeService.java:42`) take no
-   caller identity at all — anyone who knows a `commentId` or holds a `Like` object can
-   delete someone else's comment or like. Pick one authorization model and apply it
-   everywhere, not just on posts.
+2. ~~**No ownership checks on delete, inconsistently applied.**
+   `CommentService.removeComment(commentId)` and `LikeService.removeLike(Like)` took
+   no caller identity at all.~~ **Fixed** — both now require the requester's id and
+   validate ownership before deleting: `CommentService.removeComment(commentId,
+   profileId)` (`service/comment/CommentService.java:43`) and
+   `LikeService.removeLike(likeId, requesterId)` (`service/likes/LikeService.java:53`),
+   matching the pattern `PostService.removePost` already used.
 
-3. **No cascade delete → orphaned data.**
-   `ProfileService.deleteProfile` (`service/profile/ProfileService.java:44-49`) only
-   removes the profile map entry. The deleted user's posts, comments, likes, follow
-   edges, and messages all stay live, now pointing at a ghost user. Same gap on
-   `deletePost` — its comments/likes are never cleaned up. This is exactly the kind of
-   "walk me through delete" follow-up that comes up in review.
+3. ~~**No cascade delete → orphaned data.**
+   `ProfileService.deleteProfile` only removed the profile map entry; posts, comments,
+   likes, follow edges, and messages all stayed live. Same gap on `deletePost`.~~
+   **Fixed** — `SocialMediaManager.deleteProfile` (`service/SocialMediaManager.java:61`)
+   now deletes the user's own posts (cascading their comments/likes via
+   `deletePost`), then purges any comments/likes they left on *other* posts
+   (`CommentService.removeAllCommentsByProfile`, `LikeService.removeAllLikesByUser`),
+   removes all follow edges in both directions (`FollowService.removeAllRelations`),
+   and clears their conversations (`MessageService.removeAllMessagesForUser`), before
+   removing the profile itself. `SocialMediaManager.deletePost` now also cleans up
+   that post's comments and likes (`CommentService.removeAllCommentsForPost`,
+   `LikeService.removeAllLikesForPost`).
 
-4. **Mutable value objects with setters that break map-key invariants.**
-   `Post.setId()` (`model/Post.java:34`) lets you rewrite a post's id after it's
-   already a key in `PostService.postMap`; `Comment.setPostId`/`setProfileId`
-   (`model/Comment.java:24-26,32-34`) do the same for `commentMapByPostId`. Every other
-   model (`Profile`, `Like`, `Message`) correctly made `id` `final` with no setter —
-   `Post`/`Comment` are the outliers, and it's a live invariant-violation risk, not
-   just a style nit.
+4. ~~**Mutable value objects with setters that break map-key invariants.**
+   `Post.setId()` let you rewrite a post's id after it was already a key in
+   `postMap`; `Comment.setPostId`/`setProfileId` did the same for
+   `commentMapByPostId`.~~ **Fixed** — `Post.id` and `Comment.postId`/`profileId` are
+   now `final` with no setters, consistent with `Profile`, `Like`, and `Message`.
 
-5. **`Metadata` is a stub — media posts don't actually carry media.**
-   No constructor, no getters/setters (`model/Metadata.java`). You can construct
-   `new Metadata()` and satisfy the null-check in `MediaPostService.addPost`
-   (`service/post/MediaPostService.java:31-33`), but `s3url`/`fileName`/`uploadedAt`
-   can never be set or read. Given `problem.md` explicitly calls out "management of
-   media content like images and videos," this requirement is currently
-   unimplemented, not just rough around the edges.
+5. ~~**`Metadata` is a stub — media posts don't actually carry media.**
+   No constructor, no getters/setters.~~ **Fixed** — `Metadata` now takes
+   `s3url`/`fileName`/`uploadedAt` in its constructor with matching getters
+   (`model/Metadata.java`); `Simulation.java` passes real values when creating a
+   media post.
 
-6. **Dead code.** `model/Follower.java` has no constructor or getters and is unused —
-   `FollowService` stores everything in raw `Map<Integer, Set<Integer>>` instead.
-   Delete it or wire it in; leaving it is the kind of leftover that reads as an
-   unfinished design pass.
+6. ~~**Dead code.** `model/Follower.java` had no constructor or getters and was
+   unused.~~ **Fixed** — deleted.
 
-## Smaller nits
+## Nits — also fixed
 
-- `service.follwer` package name typo — cosmetic, but the kind of thing that erodes
-  "attention to detail" scoring, especially in a package name where fixing it later
-  means a cross-file rename.
-- `PostFactory.getPostInstance` (`service/post/PostFactory.java:12-18`) uses
-  `default: return MediaPostService...` instead of an explicit `case MEDIA:`. Add a
-  third `PostType` later (e.g. `POLL`, `STORY`) and it silently misroutes instead of
-  failing loudly — undercuts the "extensibility" NFR listed in `problem.md`.
-- `SocialMediaManager.deletePost` (`service/SocialMediaManager.java:94-101`) reaches
-  into `TextPostService.getInstance()`/`MediaPostService.getInstance()` directly
-  instead of going through `PostFactory`, inconsistent with how `createPost` uses the
-  factory — leaks the concrete post-service classes into the facade and partially
-  defeats the point of having the factory.
+- ~~`service.follwer` package name typo.~~ **Fixed** — renamed to
+  `service.follower`, all imports updated.
+- ~~`PostFactory.getPostInstance` used `default: return MediaPostService...` instead
+  of an explicit `case MEDIA:`, so a future `PostType` would silently misroute.~~
+  **Fixed** — `MEDIA` is now its own case; anything else throws
+  `IllegalArgumentException`.
+- ~~`SocialMediaManager.deletePost` reached into `TextPostService.getInstance()`/
+  `MediaPostService.getInstance()` directly instead of going through `PostFactory`.~~
+  **Fixed** — added `PostFactory.findServiceForPost(postId)`; both `deletePost` and
+  `likePost`'s existence check now go through the factory, and the manager no longer
+  imports the concrete post-service classes.
+
+## Bonus fix found while wiring the above
+
+`SocialMediaManager.likePost` had a live bug unrelated to this review's original
+findings: it validated the target post existed by checking `getUserPosts(likeRequest
+.getUserId())` — the **liker's own posts**, not the target post's owner — so liking
+anyone else's post (the normal case) always failed with "Post not present." Fixed by
+using the new `PostFactory.findServiceForPost` existence check instead, which doesn't
+care who owns the post.
+
+## Verification
+
+`Simulation.java` now demonstrates every fix end-to-end (duplicate-like rejection,
+cascade delete on both `deletePost` and `deleteProfile`), and a standalone smoke test
+covering 20+ assertions — including non-owner rejection on unlike/uncomment/delete,
+and post-cascade verification after `deleteProfile` — passes in full.
 
 ## Bar-raiser framing
 
-Architecture and pattern selection here is above SDE2 bar. What's missing is the SDE3
-differentiator: proactively reasoning about invariants under concurrency and lifecycle
-edge cases (delete cascades, duplicate actions, ownership) rather than just the happy
-path. Fixing bugs #1–#3 — like-dedup, consistent ownership checks, cascade delete —
-would comfortably clear SDE3.
+Architecture and pattern selection here was already above SDE2 bar. What was missing
+was the SDE3 differentiator: proactively reasoning about invariants under concurrency
+and lifecycle edge cases (delete cascades, duplicate actions, ownership) rather than
+just the happy path. With #1–#3 fixed — like-dedup, consistent ownership checks,
+cascade delete — this now clears SDE3.

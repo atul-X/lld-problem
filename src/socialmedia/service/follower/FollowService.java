@@ -1,4 +1,4 @@
-package socialmedia.service.follwer;
+package socialmedia.service.follower;
 
 import java.util.Map;
 import java.util.Set;
@@ -49,5 +49,26 @@ public class FollowService {
 
     public Set<Integer> getFollowing(int userId){
         return followingMap.getOrDefault(userId, Set.of());
+    }
+
+    public synchronized void removeAllRelations(int userId){
+        Set<Integer> following = followingMap.remove(userId);
+        if (following != null){
+            for (int followingId : following){
+                Set<Integer> followers = followerMap.get(followingId);
+                if (followers != null){
+                    followers.remove(userId);
+                }
+            }
+        }
+        Set<Integer> followers = followerMap.remove(userId);
+        if (followers != null){
+            for (int followerId : followers){
+                Set<Integer> followingSet = followingMap.get(followerId);
+                if (followingSet != null){
+                    followingSet.remove(userId);
+                }
+            }
+        }
     }
 }

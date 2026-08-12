@@ -6,7 +6,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Post {
 	private static final AtomicInteger idGenerator = new AtomicInteger(1);
 	private int userId;
-	private int id;
+	private final int id;
 	private String content;
 	private PostType postType;
 	private LocalDateTime createdAt;
@@ -28,10 +28,6 @@ public class Post {
 
 	public int getId() {
 		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getContent() {

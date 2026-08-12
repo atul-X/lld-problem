@@ -39,7 +39,7 @@ public class Simulation {
                 new Post(alice.getId(), PostType.MESSAGE, null, "Hello world, this is my first post!"));
         System.out.println("text post id " + textPost.getId() + ": \"" + textPost.getContent() + "\"");
 
-        Metadata metadata = new Metadata();
+        Metadata metadata = new Metadata("s3://social-media-bucket/photos/alice-1.jpg", "alice-1.jpg", "2026-01-01T10:00:00");
         Post mediaPost = manager.createPost(alice.getId(),
                 new Post(alice.getId(), PostType.MEDIA, metadata, "Check out this photo"));
         System.out.println("media post id " + mediaPost.getId() + ": \"" + mediaPost.getContent() + "\"");
@@ -47,6 +47,13 @@ public class Simulation {
         System.out.println("\n=== bob likes and comments on alice's text post ===");
         Like like = manager.likePost(new LikeRequest(textPost.getId(), bob.getId()));
         System.out.println("like count on post " + textPost.getId() + ": " + manager.getLikeCount(textPost.getId()));
+
+        try {
+            manager.likePost(new LikeRequest(textPost.getId(), bob.getId()));
+            System.out.println("ERROR: duplicate like should have been rejected");
+        } catch (IllegalStateException expected) {
+            System.out.println("duplicate like correctly rejected: " + expected.getMessage());
+        }
 
         Comment comment = manager.addComment(new CommentRequest("Nice post!", bob.getId(), textPost.getId()));
         System.out.println("comment by " + comment.getProfileId() + ": \"" + comment.getContent() + "\"");
@@ -66,9 +73,9 @@ public class Simulation {
         }
 
         System.out.println("\n=== cleanup: unlike, remove comment, delete a post ===");
-        manager.unlikePost(like);
+        manager.unlikePost(like.getLikeId(), bob.getId());
         System.out.println("like count after unlike: " + manager.getLikeCount(textPost.getId()));
-        manager.removeComment(comment.getId());
+        manager.removeComment(comment.getId(), bob.getId());
         System.out.println("comments after removal: " + manager.getComments(textPost.getId()).size());
         manager.deletePost(textPost.getId(), alice.getId());
         System.out.println("alice's posts after deleting the text post: " + manager.getUserPosts(alice.getId()).size());
@@ -76,6 +83,21 @@ public class Simulation {
         System.out.println("\n=== unfollow ===");
         manager.unfollowUser(carol.getId(), alice.getId());
         System.out.println("carol's feed after unfollowing alice: " + manager.getFeed(carol.getId()).size() + " posts");
+
+        System.out.println("\n=== deleting bob's profile cascades his likes/comments/follows/messages ===");
+        manager.likePost(new LikeRequest(mediaPost.getId(), bob.getId()));
+        manager.addComment(new CommentRequest("love it", bob.getId(), mediaPost.getId()));
+        System.out.println("before delete: media post like count = " + manager.getLikeCount(mediaPost.getId())
+                + ", comments = " + manager.getComments(mediaPost.getId()).size()
+                + ", alice's followers = " + manager.getFollowers(alice.getId())
+                + ", alice<->bob conversation size = " + manager.getConversation(alice.getId(), bob.getId()).size());
+
+        manager.deleteProfile(bob.getId());
+
+        System.out.println("after deleting bob: media post like count = " + manager.getLikeCount(mediaPost.getId())
+                + ", comments = " + manager.getComments(mediaPost.getId()).size()
+                + ", alice's followers = " + manager.getFollowers(alice.getId())
+                + ", alice<->bob conversation size = " + manager.getConversation(alice.getId(), bob.getId()).size());
 
         System.out.println("\n=== simulation finished ===");
     }
