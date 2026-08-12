@@ -1,20 +1,14 @@
 package socialmedia.model;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
-public class Comment {
-    private static final AtomicInteger idGenerator = new AtomicInteger(1);
-
+public class CommentRequest {
     private int postId;
     private int profileId;
     private String content;
-    private int id;
 
-    public Comment(int postId, int profileId, String content) {
-        this.postId = postId;
-        this.profileId = profileId;
+    public CommentRequest(String content, int profileId, int postId) {
         this.content = content;
-        this.id=idGenerator.getAndIncrement();
+        this.profileId = profileId;
+        this.postId = postId;
     }
 
     public int getPostId() {
@@ -40,9 +34,4 @@ public class Comment {
     public void setContent(String content) {
         this.content = content;
     }
-
-    public int getId() {
-        return id;
-    }
-
 }
