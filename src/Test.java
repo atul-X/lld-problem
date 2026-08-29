@@ -1,4 +1,9 @@
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.concurrent.Semaphore;
+import java.util.stream.Collectors;
 
 public class Test {
     class Base {
@@ -46,9 +51,10 @@ public class Test {
     class Foo {
         Semaphore r2;
         Semaphore r3;
+
         public Foo() {
-            r2=new Semaphore(0);
-            r3=new Semaphore(0);
+            r2 = new Semaphore(0);
+            r3 = new Semaphore(0);
         }
 
         public void first(Runnable printFirst) throws InterruptedException {

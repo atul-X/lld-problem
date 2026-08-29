@@ -4,9 +4,6 @@ import taskschedulerself.model.Task;
 import taskschedulerself.model.TaskRequest;
 import taskschedulerself.model.TaskStatus;
 
-import java.util.Arrays;
-import java.util.Stack;
-
 // Facade: TaskStore owns "what tasks exist and what state are they in", TaskExecutor owns
 // "how do we actually run one". This class just wires a request into a Task, hands it to
 // both, and forwards lookups/cancellation to the store.
@@ -47,5 +44,4 @@ public class InMemoryTaskScheduler implements TaskScheduler {
     public void shutdown() {
         taskExecutor.shutdown();
     }
-
 }
