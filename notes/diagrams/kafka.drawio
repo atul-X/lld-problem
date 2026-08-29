@@ -1,0 +1,712 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" modified="2026-08-13T00:00:00.000Z" agent="ChatGPT" version="24.7.17" type="device">
+  <diagram id="page_081b5ff72f" name="01 - Big Picture">
+    <mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="c_94f29f4de3" value="&lt;div style='font-family:Arial;font-size:26px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;1. KAFKA — BIG PICTURE&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Event streaming platform: producers append records to partitioned logs; consumers read independently at their own pace.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#3B82F6;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="35" y="20" width="1530" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="c_7d324b28fb" value="&lt;div style='font-family:Arial;font-size:19px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;PRODUCER&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Application that writes records&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#2563EB;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="60" y="155" width="250" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="c_2670944d2c" value="&lt;div style='font-family:Arial;font-size:19px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;TOPIC&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Logical event stream&lt;br&gt;Example: payments&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F3FF;strokeColor=#7C3AED;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="390" y="155" width="300" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="c_33f4f28e12" value="&lt;div style='font-family:Arial;font-size:19px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;PARTITIONS&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Topic split into ordered logs&lt;br&gt;Unit of scale + parallelism&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#EA580C;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="780" y="155" width="300" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="c_7db0f0213f" value="&lt;div style='font-family:Arial;font-size:19px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;KAFKA CLUSTER&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Brokers host partition replicas&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="1170" y="155" width="320" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="c_0b582739ae" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#64748B;strokeWidth=2;endArrow=block;endFill=1;" parent="1" edge="1">
+          <mxGeometry x="0" y="0" width="0" height="0" as="geometry" relative="1">
+            <mxPoint x="310" y="207" as="sourcePoint" />
+            <mxPoint x="390" y="207" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c_463ce9a165" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#64748B;strokeWidth=2;endArrow=block;endFill=1;" parent="1" edge="1">
+          <mxGeometry x="0" y="0" width="0" height="0" as="geometry" relative="1">
+            <mxPoint x="690" y="207" as="sourcePoint" />
+            <mxPoint x="780" y="207" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c_3adb3aa830" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#64748B;strokeWidth=2;endArrow=block;endFill=1;" parent="1" edge="1">
+          <mxGeometry x="0" y="0" width="0" height="0" as="geometry" relative="1">
+            <mxPoint x="1080" y="207" as="sourcePoint" />
+            <mxPoint x="1170" y="207" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c_d5c63ba286" value="&lt;div style='font-family:Arial;font-size:19px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;Broker 1&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Partition replicas live here&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="80" y="330" width="270" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="c_f0cacb31b2" value="&lt;div style='font-family:Arial;font-size:19px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;Broker 2&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Partition replicas live here&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="430" y="330" width="270" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="c_1ad823de87" value="&lt;div style='font-family:Arial;font-size:19px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;Broker 3&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Partition replicas live here&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="780" y="330" width="270" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="c_0b44496c17" value="&lt;div style='font-family:Arial;font-size:19px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;Broker N&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Partition replicas live here&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="1130" y="330" width="270" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="c_36c61b9d47" value="&lt;div style='font-family:Arial;font-size:19px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;CONSUMER GROUP A&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Consumer instances share partitions.&lt;br&gt;Each partition is assigned to at most one consumer in the group at a time.&lt;br&gt;&lt;br&gt;→ scales processing horizontally&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#2563EB;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="60" y="500" width="700" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="c_1185637751" value="&lt;div style='font-family:Arial;font-size:19px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;CONSUMER GROUP B&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Independent group sees the same topic independently.&lt;br&gt;This gives both load balancing and pub/sub semantics.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F3FF;strokeColor=#7C3AED;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="800" y="500" width="690" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="c_89fb5d5f94" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;THE MENTAL MODEL&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;Topic = logical stream • Partition = ordered shard • Broker = Kafka server process • Producer = writer • Consumer = reader • Consumer group = parallel reader pool • Offset = consumer position&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFBEB;strokeColor=#D97706;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="60" y="750" width="1430" height="130" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page_a86f5f5dd3" name="02 - Record Anatomy">
+    <mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="c_4e981a7eeb" value="&lt;div style='font-family:Arial;font-size:26px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;2. KAFKA RECORD — KNOW EVERY FIELD&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;A record carries data plus routing/metadata. Topic/partition/offset identify its location in the log.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#3B82F6;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="35" y="20" width="1530" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="c_06e4df9f30" value="&lt;div style='font-family:Arial;font-size:21px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;VALUE&lt;/div&gt;&lt;div style='font-family:Arial;font-size:17px;line-height:1.28;color:#1F2937'&gt;Application payload&lt;br&gt;JSON / Avro / bytes&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#2563EB;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="70" y="150" width="330" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="c_ba92266e2a" value="&lt;div style='font-family:Arial;font-size:21px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;KEY&lt;/div&gt;&lt;div style='font-family:Arial;font-size:17px;line-height:1.28;color:#1F2937'&gt;Optional routing identity.&lt;br&gt;Same key normally maps to the same partition.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F3FF;strokeColor=#7C3AED;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="450" y="150" width="330" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="c_8cdc44f12d" value="&lt;div style='font-family:Arial;font-size:21px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;TIMESTAMP&lt;/div&gt;&lt;div style='font-family:Arial;font-size:17px;line-height:1.28;color:#1F2937'&gt;Record timestamp.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="830" y="150" width="330" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="c_d4f9daff83" value="&lt;div style='font-family:Arial;font-size:21px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;HEADERS&lt;/div&gt;&lt;div style='font-family:Arial;font-size:17px;line-height:1.28;color:#1F2937'&gt;Small key/value metadata.&lt;br&gt;Tracing IDs, event type, schema hints.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#EA580C;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="1210" y="150" width="320" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="c_911d9b9b93" value="&lt;div style='font-family:Arial;font-size:21px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;TOPIC&lt;/div&gt;&lt;div style='font-family:Arial;font-size:17px;line-height:1.28;color:#1F2937'&gt;Logical stream name&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#3B82F6;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="260" y="330" width="330" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="c_17efdb1dee" value="&lt;div style='font-family:Arial;font-size:21px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;PARTITION&lt;/div&gt;&lt;div style='font-family:Arial;font-size:17px;line-height:1.28;color:#1F2937'&gt;Which ordered log shard&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#EA580C;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="635" y="330" width="330" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="c_11992bb62f" value="&lt;div style='font-family:Arial;font-size:21px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;OFFSET&lt;/div&gt;&lt;div style='font-family:Arial;font-size:17px;line-height:1.28;color:#1F2937'&gt;Position within that partition&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F3FF;strokeColor=#7C3AED;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="1010" y="330" width="330" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="c_4389fe07cb" value="&lt;div style='font-family:Arial;font-size:17px;font-weight:700;color:#2563EB;margin-bottom:7px'&gt;JAVA PRODUCER RECORD&lt;/div&gt;&lt;div style='font-family:monospace;font-size:13px;line-height:1.3;color:#111827;background:#F8FAFC;padding:9px;border-radius:6px'&gt;ProducerRecord&amp;lt;String, Payment&amp;gt; record =&lt;br&gt;    new ProducerRecord&amp;lt;&amp;gt;(&lt;br&gt;        &amp;quot;payments&amp;quot;,     // topic&lt;br&gt;        &amp;quot;user-123&amp;quot;,     // key&lt;br&gt;        payment         // value&lt;br&gt;    );&lt;br&gt;&lt;br&gt;record.headers().add(&lt;br&gt;    &amp;quot;trace-id&amp;quot;, traceId.getBytes()&lt;br&gt;);&lt;br&gt;&lt;br&gt;producer.send(record);&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2563EB;strokeWidth=2;spacing=9;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="70" y="510" width="700" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="c_2d233f4f29" value="&lt;div style='font-family:Arial;font-size:21px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;WHERE DOES OFFSET COME FROM?&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;Kafka assigns the offset when the record is appended to a partition log.&lt;br&gt;&lt;br&gt;A record’s offset is unique within that partition, not globally across the topic.&lt;br&gt;&lt;br&gt;Consumer position is tracked as an offset per topic-partition.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#2563EB;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="820" y="510" width="670" height="270" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page_1aa488ed2b" name="03 - Topics and Logs">
+    <mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="c_f79c9fd4c8" value="&lt;div style='font-family:Arial;font-size:26px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;3. TOPICS + PARTITIONED LOG&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Kafka persists records in append-only ordered partition logs and retains them according to topic policy.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#3B82F6;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="35" y="20" width="1530" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="c_3a601b6455" value="&lt;div style='font-family:Arial;font-size:19px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;TOPIC&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Logical name / category&lt;br&gt;Multi-subscriber&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F3FF;strokeColor=#7C3AED;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="60" y="150" width="310" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="c_789cda13f7" value="&lt;div style='font-family:Arial;font-size:18px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;PARTITION 0&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;0 → 1 → 2 → 3 → …&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#EA580C;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="430" y="145" width="210" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="c_854a2f3a43" value="&lt;div style='font-family:Arial;font-size:18px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;PARTITION 1&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;0 → 1 → 2 → 3 → …&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#EA580C;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="680" y="145" width="210" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="c_a0f3a35e8a" value="&lt;div style='font-family:Arial;font-size:18px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;PARTITION 2&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;0 → 1 → 2 → 3 → …&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#EA580C;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="930" y="145" width="210" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="c_dde3b82581" value="&lt;div style='font-family:Arial;font-size:18px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;PARTITION 3&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;0 → 1 → 2 → 3 → …&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#EA580C;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="1180" y="145" width="210" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="c_31856e9579" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;LOG SEGMENTS&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;A partition is stored as log segments on disk. Kafka rolls segments; retention/cleaning operates on segments.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#475569;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="60" y="330" width="700" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="c_57034c1051" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;KEY PROPERTY&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;Append-only + replayable. Consumers do not delete messages simply by reading them. Different consumer groups can read the same records independently.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="820" y="330" width="670" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="c_0f611f625d" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;RETENTION — DELETE&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;cleanup.policy=delete&lt;br&gt;&lt;br&gt;Default retention.ms = 604800000 ms = 7 days. Also configurable by retention.bytes.&lt;br&gt;&lt;br&gt;Use for: events/logs where old history eventually becomes unnecessary.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#EA580C;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="60" y="570" width="700" height="235" as="geometry" />
+        </mxCell>
+        <mxCell id="c_7c073129bb" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;LOG COMPACTION&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;cleanup.policy=compact&lt;br&gt;&lt;br&gt;Keeps the latest known value for each key within a partition.&lt;br&gt;&lt;br&gt;Use for: database changelogs, latest account state, cache rebuilds.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F3FF;strokeColor=#7C3AED;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="820" y="570" width="670" height="235" as="geometry" />
+        </mxCell>
+        <mxCell id="c_41b9881f45" value="&lt;div style='font-family:Arial;font-size:19px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;IMPORTANT&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;A topic can use delete, compact, or both: cleanup.policy=delete,compact&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFBEB;strokeColor=#D97706;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="60" y="840" width="1430" height="75" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page_c71fd19583" name="04 - Partitioning">
+    <mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="c_af6dc1ae72" value="&lt;div style='font-family:Arial;font-size:26px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;4. PARTITIONING — THE HEART OF KAFKA SCALE&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Partitions provide storage distribution, parallel processing and per-partition ordering.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#3B82F6;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="35" y="20" width="1530" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="c_bce468139a" value="&lt;div style='font-family:Arial;font-size:19px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;MESSAGE ARRIVES&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Producer has: key + value + optional partition&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#2563EB;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="60" y="155" width="290" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="c_351f52c55f" value="&lt;div style='font-family:Arial;font-size:18px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;PARTITIONER&lt;/div&gt;&lt;div style='font-family:Arial;font-size:14px;line-height:1.28;color:#1F2937'&gt;If partition specified → use it&lt;br&gt;If key present → hash key → partition&lt;br&gt;If no key → default sticky partitioning/batching&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#EA580C;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="430" y="155" width="300" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="c_4742990cc3" value="&lt;div style='font-family:Arial;font-size:19px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;PARTITION&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Record appended to one log&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F3FF;strokeColor=#7C3AED;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="820" y="155" width="290" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="c_e47d29d4bd" value="&lt;div style='font-family:Arial;font-size:19px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;BROKER&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Leader of that partition receives write&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="1200" y="155" width="290" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="c_f868c0cf94" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#64748B;strokeWidth=2;endArrow=block;endFill=1;" parent="1" edge="1">
+          <mxGeometry x="0" y="0" width="0" height="0" as="geometry" relative="1">
+            <mxPoint x="350" y="210" as="sourcePoint" />
+            <mxPoint x="430" y="210" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c_dce4b3876d" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#64748B;strokeWidth=2;endArrow=block;endFill=1;" parent="1" edge="1">
+          <mxGeometry x="0" y="0" width="0" height="0" as="geometry" relative="1">
+            <mxPoint x="730" y="210" as="sourcePoint" />
+            <mxPoint x="820" y="210" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c_563883d0ee" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#64748B;strokeWidth=2;endArrow=block;endFill=1;" parent="1" edge="1">
+          <mxGeometry x="0" y="0" width="0" height="0" as="geometry" relative="1">
+            <mxPoint x="1110" y="210" as="sourcePoint" />
+            <mxPoint x="1200" y="210" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c_ee9f5aca28" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;KEYED PARTITIONING&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;key = userId&lt;br&gt;&lt;br&gt;user-123 → hash(user-123) → P2&lt;br&gt;user-456 → hash(user-456) → P0&lt;br&gt;&lt;br&gt;Same key is routed consistently to the same partition under the same partitioning setup.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F3FF;strokeColor=#7C3AED;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="60" y="330" width="700" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="c_1ac0fa009c" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;NO KEY&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Modern Kafka’s default partitioning logic uses a sticky partition while it accumulates a batch, then switches partitions for later batches.&lt;br&gt;&lt;br&gt;Do NOT memorize this as simply “random.”&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#EA580C;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="820" y="330" width="670" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="c_a459fdf055" value="&lt;div style='font-family:Arial;font-size:21px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;ORDERING GUARANTEE&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;Kafka gives ordering inside a partition.&lt;br&gt;&lt;br&gt;P0: A → B → C&lt;br&gt;P1: X → Y → Z&lt;br&gt;&lt;br&gt;There is NO single total order across P0 + P1.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#2563EB;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="60" y="590" width="700" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="c_0736da53d1" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;ORDERING CASE STUDY&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Bank account updates:&lt;br&gt;&lt;br&gt;key = accountId&lt;br&gt;→ all events for one account land in one partition&lt;br&gt;→ consumer sees that account’s events in order&lt;br&gt;&lt;br&gt;Global ordering would require a single partition, sacrificing partition-level parallelism.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="820" y="590" width="670" height="220" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page_b861731f58" name="05 - Partition Scale">
+    <mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="c_59969b49a7" value="&lt;div style='font-family:Arial;font-size:26px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;5. PARTITIONS = PARALLELISM + DISTRIBUTION&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;More partitions can increase parallelism, but they also increase metadata, file, recovery and operational cost.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#3B82F6;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="35" y="20" width="1530" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="c_3310cd65ef" value="&lt;div style='font-family:Arial;font-size:19px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;1 PARTITION&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Maximum consumer-group parallelism = 1&lt;br&gt;Strongest simple ordering guarantee&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#2563EB;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="70" y="155" width="420" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="c_37fc5942e0" value="&lt;div style='font-family:Arial;font-size:19px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;6 PARTITIONS&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Up to 6 consumers in a group can process in parallel if assigned distinct partitions.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="590" y="155" width="420" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="c_cb1b51ed98" value="&lt;div style='font-family:Arial;font-size:19px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;MANY PARTITIONS&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Scales throughput, but do not pick millions casually. Partition count affects metadata, files, recovery/rebalancing and operations.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#EA580C;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="1110" y="155" width="420" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="c_acddf6a482" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;CONSUMER GROUP RULE&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;A topic partition can be assigned to at most one active consumer in a given consumer group at a time. Extra consumers can sit idle until partitions become available.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F3FF;strokeColor=#7C3AED;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="70" y="355" width="1460" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="c_2512d5ba0d" value="&lt;div style='font-family:Arial;font-size:16px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;P0&lt;/div&gt;&lt;div style='font-family:Arial;font-size:14px;line-height:1.28;color:#1F2937'&gt;→ C1&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#EA580C;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="90" y="550" width="190" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="c_257b40547e" value="&lt;div style='font-family:Arial;font-size:16px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;P1&lt;/div&gt;&lt;div style='font-family:Arial;font-size:14px;line-height:1.28;color:#1F2937'&gt;→ C2&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#EA580C;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="325" y="550" width="190" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="c_9e10f6ccb1" value="&lt;div style='font-family:Arial;font-size:16px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;P2&lt;/div&gt;&lt;div style='font-family:Arial;font-size:14px;line-height:1.28;color:#1F2937'&gt;→ C3&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#EA580C;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="560" y="550" width="190" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="c_3becbbe2d7" value="&lt;div style='font-family:Arial;font-size:16px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;P3&lt;/div&gt;&lt;div style='font-family:Arial;font-size:14px;line-height:1.28;color:#1F2937'&gt;→ C1&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#EA580C;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="795" y="550" width="190" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="c_6186d7f7c4" value="&lt;div style='font-family:Arial;font-size:16px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;P4&lt;/div&gt;&lt;div style='font-family:Arial;font-size:14px;line-height:1.28;color:#1F2937'&gt;→ C2&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#EA580C;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="1030" y="550" width="190" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="c_3620589cd9" value="&lt;div style='font-family:Arial;font-size:16px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;P5&lt;/div&gt;&lt;div style='font-family:Arial;font-size:14px;line-height:1.28;color:#1F2937'&gt;→ C3&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#EA580C;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="1265" y="550" width="190" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="c_18976b0237" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;DESIGN QUESTION&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Ask: target throughput • consumer parallelism • per-partition throughput • retention volume • operational/recovery cost • future growth&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFBEB;strokeColor=#D97706;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="70" y="680" width="700" height="185" as="geometry" />
+        </mxCell>
+        <mxCell id="c_cbd7dae8ea" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;ORDERING VS SCALE&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;More partitions = more parallelism. But ordering remains per partition. If business ordering key exists, partition by that key.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#2563EB;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="820" y="680" width="710" height="185" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page_c2573290e7" name="06 - Brokers and Replication">
+    <mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="c_d98b4274e5" value="&lt;div style='font-family:Arial;font-size:26px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;6. BROKERS + REPLICATION — HOW KAFKA SURVIVES FAILURE&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;A broker is a Kafka server process. Partition replicas are distributed across brokers for availability.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#3B82F6;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="35" y="20" width="1530" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="c_4296377c52" value="&lt;div style='font-family:Arial;font-size:19px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;BROKER 1&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Kafka server process&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="60" y="150" width="270" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="c_5e7f4e7392" value="&lt;div style='font-family:Arial;font-size:19px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;BROKER 2&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Kafka server process&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="380" y="150" width="270" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="c_b1f238b0d5" value="&lt;div style='font-family:Arial;font-size:19px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;BROKER 3&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Kafka server process&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="700" y="150" width="270" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="c_a2ba146da1" value="&lt;div style='font-family:Arial;font-size:19px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;CLUSTER&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Multiple brokers acting as one Kafka cluster&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#3B82F6;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="1020" y="150" width="470" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="c_91d057b583" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#64748B;strokeWidth=2;endArrow=block;endFill=1;" parent="1" edge="1">
+          <mxGeometry x="0" y="0" width="0" height="0" as="geometry" relative="1">
+            <mxPoint x="330" y="200" as="sourcePoint" />
+            <mxPoint x="380" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c_a1791af73c" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#64748B;strokeWidth=2;endArrow=block;endFill=1;" parent="1" edge="1">
+          <mxGeometry x="0" y="0" width="0" height="0" as="geometry" relative="1">
+            <mxPoint x="650" y="200" as="sourcePoint" />
+            <mxPoint x="700" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c_9f32605f34" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#64748B;strokeWidth=2;endArrow=block;endFill=1;" parent="1" edge="1">
+          <mxGeometry x="0" y="0" width="0" height="0" as="geometry" relative="1">
+            <mxPoint x="970" y="200" as="sourcePoint" />
+            <mxPoint x="1020" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c_f28b454748" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;PARTITION P0 — REPLICATION FACTOR 3&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Leader: Broker 1 ← producer writes here&lt;br&gt;Follower: Broker 2 ← copies leader log&lt;br&gt;Follower: Broker 3 ← copies leader log&lt;br&gt;&lt;br&gt;Leader is the active replica for normal produce/fetch traffic.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#2563EB;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="70" y="320" width="660" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="c_18517ab2ae" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;LEADER FAILURE&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;If leader fails, Kafka elects another eligible replica as leader. Producers/consumers refresh metadata and continue with the new leader. Avoid unclean leader election if data loss is unacceptable.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="800" y="320" width="690" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="c_03253e7a96" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;ISR — IN-SYNC REPLICAS&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;ISR = replicas sufficiently caught up with the leader.&lt;br&gt;&lt;br&gt;With acks=all, acknowledgements come from the in-sync replica set; min.insync.replicas can enforce a minimum ISR size.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#EA580C;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="70" y="600" width="700" height="235" as="geometry" />
+        </mxCell>
+        <mxCell id="c_b15f48ce36" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;COMMON DURABILITY SETUP&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Replication factor = 3&lt;br&gt;min.insync.replicas = 2&lt;br&gt;producer acks = all&lt;br&gt;&lt;br&gt;A strong common durability trade-off, subject to failure and configuration.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F3FF;strokeColor=#7C3AED;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="800" y="600" width="690" height="235" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page_3bf0a887c0" name="07 - Producer">
+    <mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="c_ac2c978f08" value="&lt;div style='font-family:Arial;font-size:26px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;7. PRODUCER — HOW A WRITE REACHES KAFKA&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Producer is a client library; it chooses a partition, batches records and sends produce requests to the leader.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#3B82F6;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="35" y="20" width="1530" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="c_2606f70686" value="&lt;div style='font-family:Arial;font-size:17px;font-weight:700;color:#2563EB;margin-bottom:7px'&gt;JAVA PRODUCER&lt;/div&gt;&lt;div style='font-family:monospace;font-size:13px;line-height:1.3;color:#111827;background:#F8FAFC;padding:9px;border-radius:6px'&gt;Properties props = new Properties();&lt;br&gt;props.put(&amp;quot;bootstrap.servers&amp;quot;, &amp;quot;broker1:9092,broker2:9092&amp;quot;);&lt;br&gt;props.put(&amp;quot;key.serializer&amp;quot;, StringSerializer.class);&lt;br&gt;props.put(&amp;quot;value.serializer&amp;quot;, StringSerializer.class);&lt;br&gt;props.put(&amp;quot;acks&amp;quot;, &amp;quot;all&amp;quot;);&lt;br&gt;&lt;br&gt;KafkaProducer&amp;lt;String,String&amp;gt; producer =&lt;br&gt;    new KafkaProducer&amp;lt;&amp;gt;(props);&lt;br&gt;&lt;br&gt;ProducerRecord&amp;lt;String,String&amp;gt; r =&lt;br&gt;    new ProducerRecord&amp;lt;&amp;gt;(&amp;quot;orders&amp;quot;, &amp;quot;order-123&amp;quot;, &amp;quot;{\&amp;quot;amount\&amp;quot;:100}&amp;quot;);&lt;br&gt;&lt;br&gt;producer.send(r);&lt;br&gt;producer.flush();&lt;br&gt;producer.close();&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2563EB;strokeWidth=2;spacing=9;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="60" y="150" width="650" height="340" as="geometry" />
+        </mxCell>
+        <mxCell id="c_15b7b8390a" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;WRITE PATH&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;1. create ProducerRecord&lt;br&gt;2. partitioner chooses partition&lt;br&gt;3. producer sends to partition leader&lt;br&gt;4. leader appends + replicates&lt;br&gt;5. acknowledgement follows acks setting&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#2563EB;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="760" y="150" width="730" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="c_b19e5480f3" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;KEY CHOICE&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;Use a business key when events for the same entity must stay ordered.&lt;br&gt;&lt;br&gt;Examples: userId • accountId • orderId • deviceId&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F3FF;strokeColor=#7C3AED;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="760" y="330" width="730" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="c_05f34a68ae" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;IMPORTANT PRODUCER TUNING&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;acks=all → stronger durability&lt;br&gt;retries → recover from transient errors&lt;br&gt;batch.size + linger.ms → batching efficiency&lt;br&gt;enable.idempotence=true → stronger duplicate/order handling for retries&lt;br&gt;compression.type → reduce network/storage&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="60" y="535" width="650" height="235" as="geometry" />
+        </mxCell>
+        <mxCell id="c_9b0d68fd17" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;CASE STUDY — ORDER EVENTS&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;Producer sends:&lt;br&gt;order-created(key=123)&lt;br&gt;order-paid(key=123)&lt;br&gt;order-shipped(key=123)&lt;br&gt;&lt;br&gt;Same key → same partition → partition order preserves the event sequence for that order.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFBEB;strokeColor=#D97706;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="760" y="535" width="730" height="235" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page_872b193f53" name="08 - Consumer">
+    <mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="c_e9bfa849a3" value="&lt;div style='font-family:Arial;font-size:26px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;8. CONSUMER — READ, PROCESS, COMMIT&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Consumers pull records and control their position using offsets.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#3B82F6;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="35" y="20" width="1530" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="c_08ff3042bf" value="&lt;div style='font-family:Arial;font-size:17px;font-weight:700;color:#2563EB;margin-bottom:7px'&gt;JAVA CONSUMER&lt;/div&gt;&lt;div style='font-family:monospace;font-size:13px;line-height:1.3;color:#111827;background:#F8FAFC;padding:9px;border-radius:6px'&gt;Properties p = new Properties();&lt;br&gt;p.put(&amp;quot;bootstrap.servers&amp;quot;, &amp;quot;broker1:9092&amp;quot;);&lt;br&gt;p.put(&amp;quot;group.id&amp;quot;, &amp;quot;payment-service&amp;quot;);&lt;br&gt;p.put(&amp;quot;key.deserializer&amp;quot;, StringDeserializer.class);&lt;br&gt;p.put(&amp;quot;value.deserializer&amp;quot;, StringDeserializer.class);&lt;br&gt;p.put(&amp;quot;enable.auto.commit&amp;quot;, &amp;quot;false&amp;quot;);&lt;br&gt;&lt;br&gt;KafkaConsumer&amp;lt;String,String&amp;gt; c = new KafkaConsumer&amp;lt;&amp;gt;(p);&lt;br&gt;c.subscribe(List.of(&amp;quot;payments&amp;quot;));&lt;br&gt;&lt;br&gt;while (true) {&lt;br&gt;    ConsumerRecords&amp;lt;String,String&amp;gt; rs =&lt;br&gt;        c.poll(Duration.ofMillis(500));&lt;br&gt;    for (var rec : rs) process(rec);&lt;br&gt;    c.commitSync();&lt;br&gt;}&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2563EB;strokeWidth=2;spacing=9;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="60" y="150" width="680" height="360" as="geometry" />
+        </mxCell>
+        <mxCell id="c_f8c495ceda" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;POLL MODEL&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;Consumer asks Kafka for records. Kafka does not push into your Java method. Consumer keeps its current position and can replay older offsets.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#2563EB;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="790" y="150" width="700" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="c_12e03712a2" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;OFFSET&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;Offset = position in a partition.&lt;br&gt;&lt;br&gt;Commit means: “I have processed up to this point; resume after this when appropriate.”&lt;br&gt;&lt;br&gt;Offsets are tracked for consumer groups.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F3FF;strokeColor=#7C3AED;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="790" y="330" width="700" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="c_9f98179c91" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;PROCESSING SEMANTICS&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Commit AFTER processing → commonly at-least-once style; crash before commit can replay.&lt;br&gt;&lt;br&gt;Commit BEFORE processing → may lose work on crash.&lt;br&gt;&lt;br&gt;Exactly-once needs additional transactional/idempotent design, not just consumer commit.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#EA580C;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="60" y="550" width="680" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="c_bac08fb90e" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;PRACTICAL RULE&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Make consumers idempotent where possible.&lt;br&gt;&lt;br&gt;Example: eventId stored in DB as processed. A replay becomes harmless instead of applying business logic twice.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="790" y="550" width="700" height="230" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page_d35d04e589" name="09 - Consumer Groups">
+    <mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="c_ab7f1f85f3" value="&lt;div style='font-family:Arial;font-size:26px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;9. CONSUMER GROUPS — LOAD BALANCING + PUB/SUB&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Same group = load balancing; different groups = independent subscriptions.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#3B82F6;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="35" y="20" width="1530" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="c_6dad54ebf3" value="&lt;div style='font-family:Arial;font-size:21px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;TOPIC: PAYMENTS&lt;/div&gt;&lt;div style='font-family:Arial;font-size:18px;line-height:1.28;color:#1F2937'&gt;P0 P1 P2 P3&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#EA580C;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="70" y="150" width="400" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="c_3b6f8ce04f" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;GROUP A — PAYMENT SERVICE&lt;/div&gt;&lt;div style='font-family:Arial;font-size:19px;line-height:1.28;color:#1F2937'&gt;C1 + C2&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#2563EB;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="560" y="130" width="420" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="c_46316ec439" value="&lt;div style='font-family:Arial;font-size:17px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;P0&lt;/div&gt;&lt;div style='font-family:Arial;font-size:13px;line-height:1.28;color:#1F2937'&gt;→ C1&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#2563EB;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="560" y="250" width="150" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c_80ba141cd6" value="&lt;div style='font-family:Arial;font-size:17px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;P1&lt;/div&gt;&lt;div style='font-family:Arial;font-size:13px;line-height:1.28;color:#1F2937'&gt;→ C1&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#2563EB;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="745" y="250" width="150" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c_118afb3a28" value="&lt;div style='font-family:Arial;font-size:17px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;P2&lt;/div&gt;&lt;div style='font-family:Arial;font-size:13px;line-height:1.28;color:#1F2937'&gt;→ C2&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#2563EB;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="560" y="370" width="150" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c_405d9b430a" value="&lt;div style='font-family:Arial;font-size:17px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;P3&lt;/div&gt;&lt;div style='font-family:Arial;font-size:13px;line-height:1.28;color:#1F2937'&gt;→ C2&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#2563EB;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="745" y="370" width="150" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c_f5aa604e81" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;GROUP B — ANALYTICS&lt;/div&gt;&lt;div style='font-family:Arial;font-size:19px;line-height:1.28;color:#1F2937'&gt;C3 + C4&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F3FF;strokeColor=#7C3AED;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="1050" y="130" width="420" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="c_a11934c980" value="&lt;div style='font-family:Arial;font-size:17px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;P0&lt;/div&gt;&lt;div style='font-family:Arial;font-size:13px;line-height:1.28;color:#1F2937'&gt;→ C3&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F3FF;strokeColor=#7C3AED;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="1050" y="250" width="150" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c_086175594a" value="&lt;div style='font-family:Arial;font-size:17px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;P1&lt;/div&gt;&lt;div style='font-family:Arial;font-size:13px;line-height:1.28;color:#1F2937'&gt;→ C3&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F3FF;strokeColor=#7C3AED;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="1235" y="250" width="150" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c_16e47e9ad0" value="&lt;div style='font-family:Arial;font-size:17px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;P2&lt;/div&gt;&lt;div style='font-family:Arial;font-size:13px;line-height:1.28;color:#1F2937'&gt;→ C4&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F3FF;strokeColor=#7C3AED;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="1050" y="370" width="150" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c_9337d6597d" value="&lt;div style='font-family:Arial;font-size:17px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;P3&lt;/div&gt;&lt;div style='font-family:Arial;font-size:13px;line-height:1.28;color:#1F2937'&gt;→ C4&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F3FF;strokeColor=#7C3AED;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="1235" y="370" width="150" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c_5d71561dcb" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;RULES&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;Same group → partitions are divided among consumers.&lt;br&gt;&lt;br&gt;Different groups → each group receives its own view of the topic.&lt;br&gt;&lt;br&gt;A group cannot actively process more partitions in parallel than the topic has.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#2563EB;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="70" y="500" width="690" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="c_d8d3db3df4" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;REBALANCE&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;When consumers join/leave/fail, partition ownership can change.&lt;br&gt;&lt;br&gt;During rebalancing, processing can pause depending on the protocol/application.&lt;br&gt;&lt;br&gt;Design for duplicate processing after crashes.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#EA580C;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="830" y="500" width="640" height="230" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page_05fd02ce0c" name="10 - Retention and Compaction">
+    <mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="c_f31223eead" value="&lt;div style='font-family:Arial;font-size:26px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;10. RETENTION vs COMPACTION — DIFFERENT PROBLEMS&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Retention = how long old history remains. Compaction = latest state per key.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#3B82F6;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="35" y="20" width="1530" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="c_3a55ced1d8" value="&lt;div style='font-family:Arial;font-size:21px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;DELETE RETENTION&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;cleanup.policy=delete&lt;br&gt;&lt;br&gt;Default retention.ms = 7 days. Can also bound by retention.bytes.&lt;br&gt;&lt;br&gt;Use for temporal data: logs, clicks, telemetry.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#EA580C;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="70" y="155" width="700" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="c_44e5187f6c" value="&lt;div style='font-family:Arial;font-size:21px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;LOG COMPACTION&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;cleanup.policy=compact&lt;br&gt;&lt;br&gt;Retain the latest known value for each key within a partition.&lt;br&gt;&lt;br&gt;Use for database changelogs, latest account state, caches.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F3FF;strokeColor=#7C3AED;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="830" y="155" width="700" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="c_7f61382e2c" value="&lt;div style='font-family:Arial;font-size:17px;font-weight:700;color:#7C3AED;margin-bottom:7px'&gt;COMPACTION EXAMPLE&lt;/div&gt;&lt;div style='font-family:monospace;font-size:13px;line-height:1.3;color:#111827;background:#F8FAFC;padding:9px;border-radius:6px'&gt;key=user-1 value=Delhi&lt;br&gt;key=user-2 value=Pune&lt;br&gt;key=user-1 value=Mumbai&lt;br&gt;&lt;br&gt;After compaction:&lt;br&gt;user-1 → Mumbai&lt;br&gt;user-2 → Pune&lt;br&gt;&lt;br&gt;Consumers can rebuild latest state&lt;br&gt;without retaining every old update.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#7C3AED;strokeWidth=2;spacing=9;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="70" y="380" width="700" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="c_f2a9d7c41a" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;TOMBSTONE&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;A record with a key and null value can represent deletion in a compacted topic. Tombstones are retained for a configurable period before they can be removed.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF2F2;strokeColor=#DC2626;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="830" y="380" width="700" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="c_21c6e00885" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;BOTH TOGETHER&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;cleanup.policy=delete,compact&lt;br&gt;&lt;br&gt;Useful when you want latest state while also bounding the age/size of old segments.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFBEB;strokeColor=#D97706;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="70" y="680" width="1460" height="165" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page_2eeb0e2272" name="11 - KRaft">
+    <mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="c_c0df4a542e" value="&lt;div style='font-family:Arial;font-size:26px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;11. KRAFT — MODERN KAFKA METADATA MANAGEMENT&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Modern Kafka uses a built-in metadata quorum instead of ZooKeeper. Kafka 4.x docs describe KRaft controllers as the metadata holders.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#3B82F6;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="35" y="20" width="1530" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="c_2c96025130" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;OLD MODEL — ZOOKEEPER&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;Kafka brokers + external ZooKeeper&lt;br&gt;&lt;br&gt;Legacy metadata/controller coordination model.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#64748B;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="60" y="150" width="410" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="c_64931286fb" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;MODERN MODEL — KRAFT&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;Kafka controller quorum&lt;br&gt;&lt;br&gt;Metadata is stored in the Kafka metadata log + snapshots.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="600" y="150" width="410" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="c_dd856c9f9d" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;WHY&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;Fewer external moving parts&lt;br&gt;Simpler cluster architecture&lt;br&gt;Built into Kafka&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#3B82F6;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="1140" y="150" width="390" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="c_22a73ab5b1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#64748B;strokeWidth=2;endArrow=block;endFill=1;" parent="1" edge="1">
+          <mxGeometry x="0" y="0" width="0" height="0" as="geometry" relative="1">
+            <mxPoint x="470" y="225" as="sourcePoint" />
+            <mxPoint x="600" y="225" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c_ecd9583f8b" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#64748B;strokeWidth=2;endArrow=block;endFill=1;" parent="1" edge="1">
+          <mxGeometry x="0" y="0" width="0" height="0" as="geometry" relative="1">
+            <mxPoint x="1010" y="225" as="sourcePoint" />
+            <mxPoint x="1140" y="225" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c_aadf03e0eb" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;KRAFT COMPONENTS&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;Controller quorum → manages cluster metadata&lt;br&gt;Broker → serves client data traffic&lt;br&gt;Controller(s) → metadata leadership / quorum&lt;br&gt;&lt;br&gt;For critical deployments, separate controller and broker roles are recommended rather than combined mode.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#2563EB;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="60" y="370" width="700" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="c_de174fb40b" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;FAILURE MODEL&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;A controller quorum needs a majority to make progress.&lt;br&gt;&lt;br&gt;With 2N+1 controllers, quorum can tolerate N controller failures without losing quorum availability.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F3FF;strokeColor=#7C3AED;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="830" y="370" width="700" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="c_77a76429e8" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;VERSION NOTE&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;Kafka 4.2/4.3-era documentation uses KRaft as the current metadata architecture. Learn KRaft first for new systems; know ZooKeeper mainly for legacy clusters/migrations.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#EA580C;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="60" y="650" width="1470" height="175" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page_4256b812da" name="12 - Durability">
+    <mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="c_1c81654786" value="&lt;div style='font-family:Arial;font-size:26px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;12. DURABILITY — REPLICATION, ISR, ACKS&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Learn replication factor, leader/followers, ISR, acks and min.insync.replicas together.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#3B82F6;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="35" y="20" width="1530" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="c_5a7462cf79" value="&lt;div style='font-family:Arial;font-size:21px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;REPLICATION FACTOR = 3&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;P0:&lt;br&gt;Leader → Broker1&lt;br&gt;Follower → Broker2&lt;br&gt;Follower → Broker3&lt;br&gt;&lt;br&gt;Three copies of the partition log.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#2563EB;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="70" y="150" width="420" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="c_b1ba1a0d3f" value="&lt;div style='font-family:Arial;font-size:21px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;ISR&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;In-sync replicas are sufficiently caught up with the leader. ISR can shrink when followers fall behind.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="590" y="150" width="420" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="c_9d8f46b502" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;ACKS&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;acks=0 → no broker ack wait&lt;br&gt;acks=1 → leader ack&lt;br&gt;acks=all/-1 → all ISR must acknowledge&lt;br&gt;&lt;br&gt;Combine with min.insync.replicas for stronger durability.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#EA580C;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="1110" y="150" width="420" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="c_3fe0e77147" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;COMMON SETUP&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;RF=3&lt;br&gt;min.insync.replicas=2&lt;br&gt;producer acks=all&lt;br&gt;&lt;br&gt;A write can succeed when the current ISR satisfies these conditions.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F3FF;strokeColor=#7C3AED;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="70" y="450" width="700" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="c_3e5ecebad4" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;FAILURE EXAMPLE&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;Broker1 is leader and fails. An eligible replica can become the new leader. Producer refreshes metadata and sends new writes to the new leader.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="830" y="450" width="700" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="c_fd9f462c82" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;IMPORTANT&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;Replication does not mean every replica is always equally caught up. Learn ISR + leader election + acks together to reason about durability.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFBEB;strokeColor=#D97706;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="70" y="715" width="1460" height="125" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page_19e5d7c4ec" name="13 - Kafka Connect">
+    <mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="c_0a064350a7" value="&lt;div style='font-family:Arial;font-size:26px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;13. KAFKA CONNECT — EXTERNAL INTEGRATIONS&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Kafka Connect is Kafka’s framework for moving data between Kafka and external systems without custom integration code for every source/sink.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#3B82F6;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="35" y="20" width="1530" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="c_78256e8b0b" value="&lt;div style='font-family:Arial;font-size:19px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;EXTERNAL DB&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;MySQL / Postgres&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#EA580C;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="60" y="150" width="280" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="c_ba3133a72c" value="&lt;div style='font-family:Arial;font-size:19px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;SOURCE CONNECTOR&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;External → Kafka&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="410" y="150" width="290" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="c_c1056e81ae" value="&lt;div style='font-family:Arial;font-size:19px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;KAFKA&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Topics / partitions&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F3FF;strokeColor=#7C3AED;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="770" y="150" width="290" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="c_1db4b20c00" value="&lt;div style='font-family:Arial;font-size:19px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;SINK CONNECTOR&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Kafka → external&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#2563EB;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="1130" y="150" width="380" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="c_290e00bef5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#64748B;strokeWidth=2;endArrow=block;endFill=1;" parent="1" edge="1">
+          <mxGeometry x="0" y="0" width="0" height="0" as="geometry" relative="1">
+            <mxPoint x="340" y="205" as="sourcePoint" />
+            <mxPoint x="410" y="205" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c_c0d0997da9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#64748B;strokeWidth=2;endArrow=block;endFill=1;" parent="1" edge="1">
+          <mxGeometry x="0" y="0" width="0" height="0" as="geometry" relative="1">
+            <mxPoint x="700" y="205" as="sourcePoint" />
+            <mxPoint x="770" y="205" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c_125d9a6fcc" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#64748B;strokeWidth=2;endArrow=block;endFill=1;" parent="1" edge="1">
+          <mxGeometry x="0" y="0" width="0" height="0" as="geometry" relative="1">
+            <mxPoint x="1060" y="205" as="sourcePoint" />
+            <mxPoint x="1130" y="205" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c_59975ff387" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;CONNECTOR&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Defines integration logic and splits work into tasks. SourceConnectors import data; SinkConnectors export data.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F3FF;strokeColor=#7C3AED;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="60" y="330" width="700" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="c_dbcf69ebd5" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;TASKS&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Actual parallel workers doing the copying. A connector may create multiple tasks subject to tasks.max and source/sink limits.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#2563EB;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="820" y="330" width="690" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="c_60eae10c7e" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;WORKERS&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;Kafka Connect worker = process/node running connectors + tasks.&lt;br&gt;&lt;br&gt;Distributed mode uses multiple workers for balancing, scaling and fault tolerance.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="60" y="565" width="700" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="c_a0b59b450c" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;CONVERTERS&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;Convert between Kafka Connect’s internal record model and serialized formats. Common formats: JSON, Avro, Protobuf.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#EA580C;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="820" y="565" width="690" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="c_3d6da904f9" value="&lt;div style='font-family:Arial;font-size:19px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;STANDALONE&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Single process. Simple for development/testing or simple deployments.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#64748B;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="60" y="825" width="700" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="c_c667519379" value="&lt;div style='font-family:Arial;font-size:19px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;DISTRIBUTED&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Multiple workers. Automatic balancing, scaling and fault tolerance. Config/status/offset state is stored in Kafka topics.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#3B82F6;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="820" y="825" width="690" height="100" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page_f66fb47de6" name="14 - Kafka Connect Case Study">
+    <mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="c_39d83be369" value="&lt;div style='font-family:Arial;font-size:26px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;14. CASE STUDY — DATABASE → KAFKA → SEARCH INDEX&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Use Connect when integration is mostly configuration rather than complex business logic.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#3B82F6;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="35" y="20" width="1530" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="c_f9e25e2217" value="&lt;div style='font-family:Arial;font-size:17px;font-weight:700;color:#059669;margin-bottom:7px'&gt;JDBC SOURCE — EXAMPLE SHAPE&lt;/div&gt;&lt;div style='font-family:monospace;font-size:13px;line-height:1.3;color:#111827;background:#F8FAFC;padding:9px;border-radius:6px'&gt;{&lt;br&gt;  &amp;quot;name&amp;quot;: &amp;quot;orders-source&amp;quot;,&lt;br&gt;  &amp;quot;connector.class&amp;quot;: &amp;quot;...JdbcSourceConnector&amp;quot;,&lt;br&gt;  &amp;quot;connection.url&amp;quot;: &amp;quot;jdbc:postgresql://db/orders&amp;quot;,&lt;br&gt;  &amp;quot;mode&amp;quot;: &amp;quot;timestamp&amp;quot;,&lt;br&gt;  &amp;quot;timestamp.column.name&amp;quot;: &amp;quot;updated_at&amp;quot;,&lt;br&gt;  &amp;quot;topic.prefix&amp;quot;: &amp;quot;db.orders.&amp;quot;,&lt;br&gt;  &amp;quot;tasks.max&amp;quot;: &amp;quot;4&amp;quot;&lt;br&gt;}&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#059669;strokeWidth=2;spacing=9;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="60" y="150" width="730" height="380" as="geometry" />
+        </mxCell>
+        <mxCell id="c_5b70c43938" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;FLOW&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Postgres → Source Connector → Kafka topic&lt;br&gt;&lt;br&gt;Kafka becomes the durable streaming layer between the database and downstream systems.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="850" y="150" width="640" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="c_823489ec7b" value="&lt;div style='font-family:Arial;font-size:17px;font-weight:700;color:#2563EB;margin-bottom:7px'&gt;SINK CONNECTOR — EXAMPLE SHAPE&lt;/div&gt;&lt;div style='font-family:monospace;font-size:13px;line-height:1.3;color:#111827;background:#F8FAFC;padding:9px;border-radius:6px'&gt;{&lt;br&gt;  &amp;quot;name&amp;quot;: &amp;quot;orders-search&amp;quot;,&lt;br&gt;  &amp;quot;connector.class&amp;quot;: &amp;quot;...ElasticsearchSinkConnector&amp;quot;,&lt;br&gt;  &amp;quot;topics&amp;quot;: &amp;quot;db.orders.orders&amp;quot;,&lt;br&gt;  &amp;quot;connection.url&amp;quot;: &amp;quot;http://elasticsearch:9200&amp;quot;,&lt;br&gt;  &amp;quot;tasks.max&amp;quot;: &amp;quot;4&amp;quot;&lt;br&gt;}&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2563EB;strokeWidth=2;spacing=9;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="60" y="575" width="730" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="c_e8475a8f4e" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;END TO END&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;Postgres → Source Connector → Kafka → Sink Connector → Elasticsearch&lt;br&gt;&lt;br&gt;Benefits: decoupling, replay, buffering, independent scaling.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#2563EB;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="850" y="390" width="640" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="c_6509f738f7" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;WHEN NOT TO USE CONNECT&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Use custom application code when you need complex business logic, joins, transactional workflows, custom APIs, or domain-specific error handling that the connector cannot model cleanly.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#EA580C;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="850" y="595" width="640" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="c_9a0931f250" value="&lt;div style='font-family:Arial;font-size:19px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;INTERVIEW TIP&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Connector ≠ worker ≠ task. Connector defines the job; workers run it; tasks perform parallel pieces.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFBEB;strokeColor=#D97706;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="850" y="805" width="640" height="100" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page_9210356414" name="15 - Final Cheat Sheet">
+    <mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="c_239d0f8357" value="&lt;div style='font-family:Arial;font-size:26px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;15. KAFKA — ONE-PAGE REVISION CARD&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Everything should map back to these concepts.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#3B82F6;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="35" y="20" width="1530" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="c_6ce489c3fb" value="&lt;div style='font-family:Arial;font-size:21px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;EVENT / RECORD&lt;/div&gt;&lt;div style='font-family:Arial;font-size:17px;line-height:1.28;color:#1F2937'&gt;value • key • timestamp • headers&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#2563EB;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="60" y="150" width="350" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="c_0e77227c26" value="&lt;div style='font-family:Arial;font-size:21px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;TOPIC&lt;/div&gt;&lt;div style='font-family:Arial;font-size:17px;line-height:1.28;color:#1F2937'&gt;Logical stream&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F3FF;strokeColor=#7C3AED;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="470" y="150" width="350" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="c_038b92af8e" value="&lt;div style='font-family:Arial;font-size:21px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;PARTITION&lt;/div&gt;&lt;div style='font-family:Arial;font-size:17px;line-height:1.28;color:#1F2937'&gt;Ordered log + parallelism&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#EA580C;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="880" y="150" width="300" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="c_7f54df79b9" value="&lt;div style='font-family:Arial;font-size:21px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;OFFSET&lt;/div&gt;&lt;div style='font-family:Arial;font-size:17px;line-height:1.28;color:#1F2937'&gt;Position within partition&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="1240" y="150" width="300" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="c_b482f84ad4" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;PRODUCER&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;Chooses partition&lt;br&gt;Batches + sends to leader&lt;br&gt;Key often determines partition&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#2563EB;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="60" y="350" width="350" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="c_93ba093d69" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;BROKER&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;Server process&lt;br&gt;Hosts replicas&lt;br&gt;Leader handles normal traffic&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="470" y="350" width="350" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="c_081142644c" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;REPLICATION&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;Leader + followers&lt;br&gt;ISR&lt;br&gt;Leader election&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F3FF;strokeColor=#7C3AED;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="880" y="350" width="300" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="c_385605142f" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;CONSUMER&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;Poll + process + commit offset&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#EA580C;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="1240" y="350" width="300" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="c_bb22e8f428" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;CONSUMER GROUP&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;Same group → load balancing across partitions&lt;br&gt;Different groups → independent subscription&lt;br&gt;Max active consumer parallelism is bounded by partition count&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#3B82F6;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="60" y="610" width="710" height="235" as="geometry" />
+        </mxCell>
+        <mxCell id="c_1a1c90919a" value="&lt;div style='font-family:Arial;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;RETENTION / COMPACTION&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;delete → old history by time/size&lt;br&gt;compact → latest value per key&lt;br&gt;Both can be combined&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#EA580C;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="820" y="610" width="720" height="235" as="geometry" />
+        </mxCell>
+        <mxCell id="c_d78689550c" value="&lt;div style='font-family:Arial;font-size:19px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;KRAFT&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Modern metadata quorum; ZooKeeper is legacy for older deployments.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="60" y="875" width="710" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="c_2cd8cf531a" value="&lt;div style='font-family:Arial;font-size:19px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;KAFKA CONNECT&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Source: external → Kafka&lt;br&gt;Sink: Kafka → external&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F3FF;strokeColor=#7C3AED;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="820" y="875" width="720" height="95" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page_39d8c35b85" name="16 - Interview Scenarios">
+    <mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="c_e16ec660c4" value="&lt;div style='font-family:Arial;font-size:26px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;16. SCENARIO QUESTIONS — REASON, DON’T MEMORIZE&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Use these to validate real understanding.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#3B82F6;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="35" y="20" width="1530" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="c_981c9961b7" value="&lt;div style='font-family:Arial;font-size:18px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;Need order per user&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;key=userId → all user events map to one partition&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#475569;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="60" y="145" width="700" height="125" as="geometry" />
+        </mxCell>
+        <mxCell id="c_9b476b1e21" value="&lt;div style='font-family:Arial;font-size:18px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;Need 20-way parallel consumers&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Topic needs at least 20 partitions for that group&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#475569;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="810" y="145" width="700" height="125" as="geometry" />
+        </mxCell>
+        <mxCell id="c_177e1ea726" value="&lt;div style='font-family:Arial;font-size:18px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;Two services need every event&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Use two different consumer groups&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#475569;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="60" y="295" width="700" height="125" as="geometry" />
+        </mxCell>
+        <mxCell id="c_b3ccb50903" value="&lt;div style='font-family:Arial;font-size:18px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;Crash after process, before commit&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Replay can happen → idempotent processing&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#475569;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="810" y="295" width="700" height="125" as="geometry" />
+        </mxCell>
+        <mxCell id="c_f964e752f1" value="&lt;div style='font-family:Arial;font-size:18px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;Leader fails&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Eligible replica can become new leader&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#475569;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="60" y="445" width="700" height="125" as="geometry" />
+        </mxCell>
+        <mxCell id="c_c65dcffd49" value="&lt;div style='font-family:Arial;font-size:18px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;Need latest account state&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Compacted topic keyed by accountId&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#475569;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="810" y="445" width="700" height="125" as="geometry" />
+        </mxCell>
+        <mxCell id="c_0eef825a60" value="&lt;div style='font-family:Arial;font-size:18px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;DB → Kafka quickly&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Kafka Connect Source&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#475569;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="60" y="595" width="700" height="125" as="geometry" />
+        </mxCell>
+        <mxCell id="c_5f5338f7c9" value="&lt;div style='font-family:Arial;font-size:18px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;Kafka → Elasticsearch&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Kafka Connect Sink&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#475569;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="810" y="595" width="700" height="125" as="geometry" />
+        </mxCell>
+        <mxCell id="c_1df818fa4b" value="&lt;div style='font-family:Arial;font-size:18px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;Traffic spikes&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Check consumer lag, partition/consumer capacity, downstream limits&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#475569;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="60" y="745" width="700" height="125" as="geometry" />
+        </mxCell>
+        <mxCell id="c_bc09306501" value="&lt;div style='font-family:Arial;font-size:18px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;Need global ordering&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Single-partition topic; lose partition-level parallelism&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#475569;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="810" y="745" width="700" height="125" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page_7ef0d7c4d2" name="17 - Final Mental Model">
+    <mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="c_cea3467d0e" value="&lt;div style='font-family:Arial;font-size:26px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;17. FINAL KAFKA MENTAL MODEL&lt;/div&gt;&lt;div style='font-family:Arial;font-size:15px;line-height:1.28;color:#1F2937'&gt;Reconstruct Kafka from immutable logs + partitioning + replication + independent consumers.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#3B82F6;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="35" y="20" width="1530" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="c_4db7d18c0f" value="&lt;div style='font-family:Arial;font-size:21px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;1. PRODUCE&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;event&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#2563EB;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="80" y="150" width="250" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="c_b60e4b6a77" value="&lt;div style='font-family:Arial;font-size:21px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;2. PARTITION&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;key → partition&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#EA580C;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="420" y="150" width="250" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="c_8115928935" value="&lt;div style='font-family:Arial;font-size:21px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;3. APPEND&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;leader log&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="760" y="150" width="250" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="c_b14708f18e" value="&lt;div style='font-family:Arial;font-size:21px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;4. REPLICATE&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;followers / ISR&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F3FF;strokeColor=#7C3AED;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="1100" y="150" width="250" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="c_37037162b2" value="&lt;div style='font-family:Arial;font-size:21px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;5. RETAIN&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;delete / compact&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#EA580C;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="80" y="350" width="250" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="c_a5ae9faa6e" value="&lt;div style='font-family:Arial;font-size:21px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;6. POLL&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;consumer reads&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#2563EB;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="420" y="350" width="250" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="c_dece50f9d0" value="&lt;div style='font-family:Arial;font-size:21px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;7. COMMIT&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;offset progress&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F3FF;strokeColor=#7C3AED;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="760" y="350" width="250" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="c_c758534894" value="&lt;div style='font-family:Arial;font-size:21px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;8. REPLAY&lt;/div&gt;&lt;div style='font-family:Arial;font-size:16px;line-height:1.28;color:#1F2937'&gt;seek old offset&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="1100" y="350" width="250" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="c_bdb0bb9470" value="&lt;div style='font-family:Arial;font-size:23px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;THE SINGLE SENTENCE&lt;/div&gt;&lt;div style='font-family:Arial;font-size:18px;line-height:1.28;color:#1F2937'&gt;Kafka is a distributed, partitioned append log where producers write records, brokers replicate partition logs, and consumer groups read independently by tracking offsets.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFBEB;strokeColor=#D97706;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="170" y="560" width="1180" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="c_3bc17b2269" value="&lt;div style='font-family:Arial;font-size:22px;font-weight:700;color:#0F172A;margin-bottom:7px'&gt;THE THINGS TO KNOW&lt;/div&gt;&lt;div style='font-family:Arial;font-size:18px;line-height:1.28;color:#1F2937'&gt;Event → Topic → Partition → Broker → Replication/ISR → Producer → Consumer Group/Offset → Retention/Compaction → KRaft → Connect&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#3B82F6;strokeWidth=2;spacing=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="170" y="760" width="1180" height="135" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
