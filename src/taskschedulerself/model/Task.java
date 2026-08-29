@@ -1,56 +1,59 @@
 package taskschedulerself.model;
 
-import java.util.concurrent.Future;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.UUID;
+import java.util.concurrent.Callable;
 
 public class Task {
-    AtomicInteger generator =new AtomicInteger();
-    private int id;
-    private Future<Void> future;
-    private TaskStaus taskStaus;
-    private int attemptCount;
+    private final String id;
+    private final String name;
+    private final Callable<Void> job;
+    private final RetryPolicy retryPolicy;
+    private final RecurrenceStrategy recurrenceStrategy;
 
-    public Task( Future<Void> future, TaskStaus taskStaus, int attemptCount) {
-        this.id = generator.getAndIncrement();
-        this.future = future;
-        this.taskStaus = taskStaus;
-        this.attemptCount = attemptCount;
+    private volatile TaskStatus status = TaskStatus.PENDING;
+    private volatile int attemptCount = 0;
+
+    public Task(String name, Callable<Void> job, RetryPolicy retryPolicy, RecurrenceStrategy recurrenceStrategy) {
+        this.id = UUID.randomUUID().toString();
+        this.name = name;
+        this.job = job;
+        this.retryPolicy = retryPolicy;
+        this.recurrenceStrategy = recurrenceStrategy;
     }
 
-    public AtomicInteger getGenerator() {
-        return generator;
-    }
-
-    public void setGenerator(AtomicInteger generator) {
-        this.generator = generator;
-    }
-
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-
-    public Future<Void> getFuture() {
-        return future;
+    public String getName() {
+        return name;
     }
 
-    public void setFuture(Future<Void> future) {
-        this.future = future;
+    public Callable<Void> getJob() {
+        return job;
     }
 
-    public TaskStaus getTaskStaus() {
-        return taskStaus;
+    public RetryPolicy getRetryPolicy() {
+        return retryPolicy;
     }
 
-    public void setTaskStaus(TaskStaus taskStaus) {
-        this.taskStaus = taskStaus;
+    public RecurrenceStrategy getRecurrenceStrategy() {
+        return recurrenceStrategy;
     }
 
-    public int getAttemptCount() {
-        return attemptCount;
+    public TaskStatus getStatus() {
+        return status;
     }
 
-    public void setAttemptCount(int attemptCount) {
-        this.attemptCount = attemptCount;
+    public void setStatus(TaskStatus status) {
+        this.status = status;
+    }
+
+    public int incrementAttempt() {
+        return ++attemptCount;
+    }
+
+    public void resetAttempts() {
+        attemptCount = 0;
     }
 }

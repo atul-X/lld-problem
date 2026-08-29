@@ -1,22 +1,23 @@
 package taskschedulerself.model;
 
-public class FixedDelayStrategy  implements RecurrenceStrategy{
-    private int  delayMillis;
+// "fixed delay": next run starts `delayMillis` after the PREVIOUS run finished.
+public class FixedDelayStrategy implements RecurrenceStrategy {
+    private final long delayMillis;
 
-    public FixedDelayStrategy(int delayMillis) {
-        if (delayMillis<0){
-            throw new IllegalArgumentException("periodMillis must be positive");
+    public FixedDelayStrategy(long delayMillis) {
+        if (delayMillis < 0) {
+            throw new IllegalArgumentException("delayMillis must not be negative");
         }
         this.delayMillis = delayMillis;
     }
 
     @Override
-    public Boolean isRecurring() {
+    public boolean isRecurring() {
         return true;
     }
 
     @Override
     public long nextExecutionTimeInMillis(long lastScheduledTimeMillis, long lastCompletionTimeMillis) {
-        return lastCompletionTimeMillis*delayMillis;
+        return lastCompletionTimeMillis + delayMillis;
     }
 }

@@ -1,22 +1,24 @@
 package taskschedulerself.model;
 
-public class FixedRateStrategy implements RecurrenceStrategy{
-    private int  periodMillis;
+// "fixed rate": next run is `periodMillis` after the PREVIOUS run was scheduled to start
+// (regardless of how long that run actually took).
+public class FixedRateStrategy implements RecurrenceStrategy {
+    private final long periodMillis;
 
-    public FixedRateStrategy(int periodMillis) {
-        if (periodMillis<0){
-            throw new IllegalArgumentException("periodMillis must be positive");
+    public FixedRateStrategy(long periodMillis) {
+        if (periodMillis < 0) {
+            throw new IllegalArgumentException("periodMillis must not be negative");
         }
         this.periodMillis = periodMillis;
     }
 
     @Override
-    public Boolean isRecurring() {
+    public boolean isRecurring() {
         return true;
     }
 
     @Override
     public long nextExecutionTimeInMillis(long lastScheduledTimeMillis, long lastCompletionTimeMillis) {
-        return lastScheduledTimeMillis*periodMillis;
+        return lastScheduledTimeMillis + periodMillis;
     }
 }

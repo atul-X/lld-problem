@@ -7,7 +7,7 @@ public class NoRetry implements RetryPolicy {
     }
 
     @Override
-    public int backOfMillis(int attemptCount) {
+    public long backoffMillis(int attemptCount) {
         return 0;
     }
 }

@@ -1,6 +1,6 @@
 package taskschedulerself.model;
 
 public interface RecurrenceStrategy {
-    Boolean isRecurring();
+    boolean isRecurring();
     long nextExecutionTimeInMillis(long lastScheduledTimeMillis, long lastCompletionTimeMillis);
 }

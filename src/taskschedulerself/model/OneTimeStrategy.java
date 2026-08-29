@@ -1,8 +1,8 @@
 package taskschedulerself.model;
 
-public class OneTimeStrategy implements RecurrenceStrategy{
+public class OneTimeStrategy implements RecurrenceStrategy {
     @Override
-    public Boolean isRecurring() {
+    public boolean isRecurring() {
         return false;
     }
 
