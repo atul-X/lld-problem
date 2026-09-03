@@ -50,6 +50,13 @@ Thread coordination
 
 	dependency
 		what if one thread depends on another threads
+Performance in multithreading
+	latency:- the time to completion of a task.Measured in time units.
+	throughput:- The amount of tasks completed in a given period.Measured in tasks/Time unit.
+Thread Pooling .
+
+HyperThreading
+
 		
 
 
