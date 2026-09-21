@@ -110,7 +110,16 @@ Atomic Operation
 
 
 
-
+Critical Section
+	
+	Synchronized-Monitor/Lock
+		Locking mechanism
+		Used to restrict access to a critical section or entire method to a single thread at a time .
+	Synchronized-Monitor -> Synchronized key word on method if we use only one thread can excute that method at a time. these class level
+	Synchronized-Lock -> 
+		Object lockingObject=new Object();
+		Synchronized block is rentrant
+		A thread cannot prevent itself from entering a critical section.
 
 
 
