@@ -7,7 +7,7 @@ what threads are and where they live
 single threaded application process
 what the thread contains
 	stack-region in memory ,where local variable are stored and passed into functions
-	instruction pointer- Address of the next instrucation to execute.
+	instruction pointer-address of the next instrucation to execute.
 context switch
 	stop thread 1
 	schedule thread 1 out
@@ -83,7 +83,7 @@ What is allocated on the Heap?
 	static variables
 	Governed and managed by Garbage collector
 	Objects stay as long as we have a reference to then.
-	Members of classes- exist as long as their parent objects exist (same life cycles as their parents)
+	Members of classes-exist as long as their parent objects exist (same life cycles as their parents)
 	Static variables -stay forever
 Objects Vs References
 	references 
@@ -107,8 +107,12 @@ Atomic Operation
 	Single step ="all or nothing"
 	No intermediate states 
 	
-
-
+	All reference assignments are atomic
+	we can get and set references to objects atomically 
+	all assignments to primitive types are safe except long and
+double.
+	Assignments to long and double if declared volatile.
+	
 
 Critical Section
 	
@@ -121,20 +125,90 @@ Critical Section
 		Synchronized block is rentrant
 		A thread cannot prevent itself from entering a critical section.
 
+Race Condition 	- when multiple threads are accessing a shared resource
+	At least one thread is modifying the resource
+	The Timing of threads scheduling may cause incorrect result.
+	The core of the problem is non-atomic operations performed on the 
+	resource.
 
+Data Race 
+	Compiler and CPU may execute the instructions out of order to 
+	optime performance and utilization.
+	They will do so while maintaining the logical correctness
+	of the code.
+	Out of Order Execution by the compiler and cpu are important
+	features to speed up the code.
 
+	The Compiler re-arrange instructions for better 
+		Branch predication 	
+		Vectorization -parallel instruction execution(SIMD)
+		Prefetching instructions- better cache performance
+	CPU re-arranges instructions for better hardware units 
+	utilization.
 
+Data race Consequences 
+	May lead to unexpected ,paradoxical and incorrect results
 
+Data Race -Solutins 
+	Establish a Happens -before semantics by one of these 	methods
+		Synchronization of methods which modify shared variables.
+		Declaration of shared variables with the volatile keyword.
+Locking statergy
+	Fine-Grained Locking and Coarse-Gained Locking 
 
+Fine-Grained Locking
+	Fine-grained locking uses many specific locks to protect small, 
+	distinct parts of a data structure or code block rather than one large lock.
+How It Work
+	High Parallelism: Multiple threads can access different parts of a shared 
+	data structure at the same time.
+	Reduced Contention: Threads do not wait in line if they work on separate sections 
+	(like different buckets in a hash table or separate rows in a database).Example: 
+	Instead of locking an entire hash table, you use a separate lock for each bucket or node.
+Pros and Cons
+	Pros: 
+		Speeds up multi-threaded programs by allowing true concurrent execution.
+	Cons: 
+	Increases memory usage and CPU overhead from managing many locks.
+	It also raises the risk of complex bugs like deadlocks if locks are not handled carefully.
+Coarse-Gained Locking
+	Coarse-grained locking is a concurrency 
+	control strategy where a single, large lock 
+	protects an entire data structure, a large 
+	segment of code, or a group of related objects.
 
+How It Works
+	Single Protection Point:
+		One lock guards multiple resources or a whole component 
+		(such as an entire hash table or a customer record along with all their addresses).
+	Simplicity: It is easy to design, implement, and reason about, minimizing the risk of complex 
+		deadlocks or race conditions associated with managing many smaller locks.
+	Low Overhead: The application spends minimal time acquiring and releasing 
+		locks because there is only one global lock to manage.
+The Drawbacks
+	Reduced Concurrency: 
+		Threads must wait for the single lock to become free, even if they want to access completely 
+		independent parts of the data structure.
+	Bottlenecks and Contention: Under high multi-threaded loads, 
+		performance drops significantly as operations become serialized, 
+		turning a multi-core system into an effective single-threaded queue.
 
+deadlock
+	A thread deadlock is a programming condition where two or more threads 
+	are blocked forever because each is waiting for a resource or lock held by another.
+Conditions for deadlock
+	Mutual Exclusion :
+		only one thread can have exclusive access to resources.
+	Hold and wait 	
+		at least one thread is hodling a resource and waiting for another resource.
+	Non-preemptive allocation
+		A resource is released only after the thread done using it.
+	circular wait 
+		A chain of atleast two threads each one is holding one resource and waiting for another resource.
+Solution 
+	Avoid circular wait enforce stric order in lock acquisition.
 
-
-
-
-
-
-
+	
 
 
 
